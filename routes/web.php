@@ -22,3 +22,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+//admin
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function (){
+    Route::namespace('Auth')->group(function (){
+        //login route
+        Route::get('login','AuthenticatedSessionController@create')->name('login');
+        Route::post('login','AuthenticatedSessionController@store')->name('adminlogin');
+    });
+});
