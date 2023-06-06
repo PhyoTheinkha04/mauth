@@ -1352,10 +1352,6 @@ select {
     display: none;
   }
 
-  .sm\:h-20 {
-    height: 5rem;
-  }
-
   .sm\:max-w-md {
     max-width: 28rem;
   }

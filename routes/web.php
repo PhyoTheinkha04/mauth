@@ -25,9 +25,14 @@ require __DIR__.'/auth.php';
 
 //admin
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function (){
-    Route::namespace('Auth')->group(function (){
+    Route::namespace('Auth')->middleware('guest:admin')->group(function (){
         //login route
         Route::get('login','AuthenticatedSessionController@create')->name('login');
         Route::post('login','AuthenticatedSessionController@store')->name('adminlogin');
     });
+    Route::middleware('admin')->group(function (){
+         Route::get('dashboard','HomeController@index')->name('dashboard');
+    });
+
+    Route::post('logout','Auth\AuthenticatedSessionController@destroy')->name('logout');
 });
